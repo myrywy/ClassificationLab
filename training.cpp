@@ -65,7 +65,7 @@ int training(){
     CvSVM svm(trainInput,trainResponses);
     svm.save("svm_model");
     QList<QString> tests;
-    tests.append("test/kola/2.jpg");
+    tests.append("test/kola/1.jpg");
     tests.append("test/kwadraty/2.jpg");
     for(QString testPath : tests){
         Mat image=imread(testPath.toStdString());
@@ -78,6 +78,27 @@ int training(){
             testInput.at<float>(0,i)=descriptorValues[i];
         }
         float label=svm.predict(testInput);
+        imshow(QString::number(label).toStdString(),image);
+        qDebug() << testPath << " label: " << QString::number(label);
+    }
+
+
+    CvGBTrees tree(trainInput,CV_ROW_SAMPLE,trainResponses);
+    tree.save("svm_model");
+    //QList<QString> tests;
+    //tests.append("test/kola/2.jpg");
+    //tests.append("test/kwadraty/2.jpg");
+    for(QString testPath : tests){
+        Mat image=imread(testPath.toStdString());
+        HOGDescriptor descriptor;
+        descriptor.winSize=Size(40,40);
+        std::vector<float> descriptorValues;
+        descriptor.compute(image,descriptorValues);
+        Mat testInput(1,inCols,CV_32FC1);
+        for(int i=0;i<inCols;i++){
+            testInput.at<float>(0,i)=descriptorValues[i];
+        }
+        float label=tree.predict(testInput);
         imshow(QString::number(label).toStdString(),image);
         qDebug() << testPath << " label: " << QString::number(label);
     }
