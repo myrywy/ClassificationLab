@@ -38,8 +38,20 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     training.cpp \
-    predicting.cpp
+    predicting.cpp \
+    classifier.cpp \
+    hogclassifier.cpp \
+    defaulthogclassifier.cpp \
+    autotest.cpp \
+    treeclassifier.cpp \
+    treehogclassifier.cpp
 
 HEADERS += \
     utils.hpp \
-    essentials.hpp
+    essentials.hpp \
+    classifier.h \
+    hogclassifier.hpp \
+    defaulthogclassifier.hpp \
+    common.hpp \
+    treeclassifier.hpp \
+    treehogclassifier.hpp

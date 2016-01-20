@@ -15,5 +15,6 @@
 #include <QVector>
 #include <QString>
 #include <QDebug>
+#include <QDir>
 
 #endif // ESSENTIALS_HPP
