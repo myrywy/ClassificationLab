@@ -44,7 +44,9 @@ SOURCES += main.cpp \
     defaulthogclassifier.cpp \
     autotest.cpp \
     treeclassifier.cpp \
-    treehogclassifier.cpp
+    treehogclassifier.cpp \
+    hogsvmexsclassifier.cpp \
+    exhaustivesearch.cpp
 
 HEADERS += \
     utils.hpp \
@@ -54,4 +56,7 @@ HEADERS += \
     defaulthogclassifier.hpp \
     common.hpp \
     treeclassifier.hpp \
-    treehogclassifier.hpp
+    treehogclassifier.hpp \
+    hogsvmexsclassifier.hpp \
+    exhaustivesearch.hpp \
+    functionalutils.hpp

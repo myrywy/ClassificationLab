@@ -20,6 +20,9 @@ int main(int argc, char *argv[])
         predicting();
     }else if(decision=="autotest"){
         test();
+    }else if(decision=="train/test"){
+        training();
+        test();
     }else{
         return 0;
     }

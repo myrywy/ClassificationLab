@@ -48,7 +48,7 @@ int training(){
 
     cv::SVMParams params;
     params.svm_type    = CvSVM::C_SVC;
-    //params.kernel_type = CvSVM::LINEAR;
+    params.kernel_type = CvSVM::LINEAR;
     //params.kernel_type = CvSVM::POLY;
     //params.kernel_type = CvSVM::SIGMOID;
     //params.kernel_type = CvSVM::RBF;
@@ -57,17 +57,17 @@ int training(){
     //params.coef0=1;
     //params.term_crit   = cvTermCriteria(CV_TERMCRIT_ITER, 100, 1e-6);
     //params.term_crit   = cvTermCriteria(CV_TERMCRIT_ITER, 1, 1e-6);
-    params.term_crit   = cvTermCriteria(CV_TERMCRIT_ITER, 1, 0.1);
+    params.term_crit   = cvTermCriteria(CV_TERMCRIT_ITER, 20, 0.1);
 
     qDebug() << "SVM in progress";
     CvSVM svm;
-    //svm.train(trainInput,trainResponses,Mat(),Mat(),params);
-    svm.train(trainInput,trainResponses);
+    svm.train(trainInput,trainResponses,Mat(),Mat(),params);
+    //svm.train(trainInput,trainResponses);
     svm.save("svm_model.xml");
     qDebug() << "SVM saved";
     qDebug() << "Trees in progress";
-    CvGBTrees tree(trainInput,CV_ROW_SAMPLE,trainResponses);
-    tree.save("tree_model.xml");
+    //CvGBTrees tree(trainInput,CV_ROW_SAMPLE,trainResponses);
+    //tree.save("tree_model.xml");
     qDebug() << "Trees saved";
 
     return 0;
@@ -282,6 +282,8 @@ std::vector<float> getHogDescriptor(QString filename){
     qDebug() << descriptor.cellSize.width << " x " << descriptor.cellSize.height;*/
     descriptor.winSize=Size(winSizeW,winSizeH);
     std::vector<float> tmp;
+    //imshow("a",img);
+    //waitKey(20);
     descriptor.compute(img,tmp);
     return tmp;
 }

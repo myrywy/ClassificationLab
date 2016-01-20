@@ -3,6 +3,7 @@
 #include "hogclassifier.hpp"
 #include "defaulthogclassifier.hpp"
 #include "treehogclassifier.hpp"
+#include "hogsvmexsclassifier.hpp"
 #include <QDebug>
 #include <QTime>
 
@@ -24,6 +25,8 @@ int test(){
         classifier=new TreeHogClassifier(modelPath);
     }else if(metoda=="defaultHog"){
         classifier=new DefaultHogClassifier;
+    }else if(metoda=="ExSHogSvm"){
+        classifier=new HogSvmExSClassifier(modelPath);
     }
     int falsePositive{0};
     int truePositive{0};
